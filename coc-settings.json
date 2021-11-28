@@ -1,12 +1,7 @@
 {
-	"python.jediEnabled": false,
 	"coc.preferences.formatOnType": true,
 	"coc.preferences.formatOnSaveFiletypes": [
 		"python",
 		"html"
 	]
-
 }
-
-
-
