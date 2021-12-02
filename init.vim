@@ -7,6 +7,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
+Plug 'vim-test/vim-test'
+Plug 'github/copilot.vim'
 
 "Tree
 Plug 'preservim/nerdtree'
@@ -21,7 +23,6 @@ Plug 'morhetz/gruvbox'
 Plug 'vim-python/python-syntax'
 
 call plug#end()
-
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -53,7 +54,15 @@ nnoremap <c-f> :Ag<space>
 "NerdTree
 nnoremap <C-n> :NERDTreeToggle<CR>
 
-
+"test
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
+let test#strategy = "neovim"
+let g:test#preserve_screen = 1
+let g:test#neovim#start_normal = 1 
 
 "Python -----------------------------------"
 let g:python_highlight_all = 1
