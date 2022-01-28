@@ -22,6 +22,9 @@ Plug 'morhetz/gruvbox'
 "Python
 Plug 'vim-python/python-syntax'
 
+"Git
+Plug 'tpope/vim-fugitive'
+
 call plug#end()
 
 let g:airline_powerline_fonts = 1
@@ -41,6 +44,7 @@ set mouse=""
 set inccommand=split
 set autoindent
 set updatetime=300
+set nohlsearch
 
 let mapleader="\<space>"
 
@@ -50,6 +54,22 @@ nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
 nnoremap <c-p> :Files<cr>
 nnoremap <c-f> :Ag<space>
+
+filetype plugin indent on
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+" ================ Scrolling ========================
+
+set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+set sidescrolloff=15
+set sidescroll=1
+
+" ================ Git ===========================
+nmap <leader>gs :G<CR>
+nmap <leader>gd :Gvdiffsplit<CR>
+
 
 "NerdTree
 nnoremap <C-n> :NERDTreeToggle<CR>

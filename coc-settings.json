@@ -1,7 +1,18 @@
 {
-	"coc.preferences.formatOnType": true,
-	"coc.preferences.formatOnSaveFiletypes": [
-		"python",
-		"html"
-	]
+    "coc.preferences.formatOnType": true,
+    "coc.preferences.formatOnSaveFiletypes": [
+        "python",
+        "html"
+    ],
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintArgs": [
+        "--disable=C0114,C0115,C0116"
+    ],
+    "eslint.packageManager": "yarn",
+    "eslint.nodePath": ".yarn/sdks",
+    "workspace.workspaceFolderCheckCwd": false,
+    "tsserver.tsdk": ".yarn/sdks/typescript/lib",
+    "tsserver.formatOnType": false,
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true
 }
