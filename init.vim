@@ -68,7 +68,6 @@ set sidescroll=1
 
 " ================ Git ===========================
 nmap <leader>gs :G<CR>
-nmap <leader>gd :Gvdiffsplit<CR>
 
 
 "NerdTree
@@ -89,6 +88,9 @@ let g:python_highlight_all = 1
 let g:python_highlight_space_errors=0
 
 "Coc.vim ---------------------------------"
+"extensions
+let g:coc_global_extensions = ['coc-json', 'coc-eslint', 'coc-prettier', 'coc-css', 'coc-tsserver']
+
 " Give more space for displaying messages.
 set cmdheight=2
 
