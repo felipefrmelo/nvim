@@ -22,6 +22,11 @@ Plug 'morhetz/gruvbox'
 "Python
 Plug 'vim-python/python-syntax'
 
+"Javascript
+Plug 'pangloss/vim-javascript'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'maxmellon/vim-jsx-pretty'
+
 "Git
 Plug 'tpope/vim-fugitive'
 
@@ -86,6 +91,9 @@ let g:test#neovim#start_normal = 1
 "Python -----------------------------------"
 let g:python_highlight_all = 1
 let g:python_highlight_space_errors=0
+
+"Javascript -----------------------------------"
+let g:javascript_plugin_jsdoc = 1
 
 "Coc.vim ---------------------------------"
 "extensions

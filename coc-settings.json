@@ -1,15 +1,12 @@
 {
-    "coc.preferences.formatOnType": true,
-    "coc.preferences.formatOnSaveFiletypes": [
-        "python",
-        "html"
-    ],
-    "python.linting.pylintEnabled": true,
-    "python.linting.pylintArgs": [
-        "--disable=C0114,C0115,C0116"
-    ],
-    "workspace.workspaceFolderCheckCwd": false,
-    "tsserver.formatOnType": false,
-    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
-    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true
+  "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnSaveFiletypes": ["python", "html"],
+  "python.linting.pylintEnabled": true,
+  "python.linting.pylintArgs": ["--disable=C0114,C0115,C0116"],
+  "workspace.workspaceFolderCheckCwd": false,
+  "tsserver.formatOnType": false,
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+  "eslint.format.enable": true,
+  "prettier.eslintIntegration": true
 }
