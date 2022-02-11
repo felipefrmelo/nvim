@@ -5,10 +5,10 @@ call plug#begin()
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
 Plug 'vim-test/vim-test'
 Plug 'github/copilot.vim'
+Plug 'honza/vim-snippets'
 
 "Tree
 Plug 'preservim/nerdtree'
@@ -17,6 +17,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 "style
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
+Plug 'sainnhe/gruvbox-material'
 Plug 'morhetz/gruvbox'
 
 "Python
@@ -37,7 +38,7 @@ let g:airline#extensions#tabline#enabled = 1
 
 let g:gruvbox_italic=1
 let g:gruvbox_invert_selection=0
-let g:gruvbox_contrast_dark="hard"
+let g:gruvbox_contrast_dark= 'hard'
 colorscheme gruvbox
 set background=dark    " Setting dark mode
 "set background=light   " Setting light mode
@@ -97,7 +98,7 @@ let g:javascript_plugin_jsdoc = 1
 
 "Coc.vim ---------------------------------"
 "extensions
-let g:coc_global_extensions = ['coc-json', 'coc-eslint', 'coc-prettier', 'coc-css', 'coc-tsserver']
+let g:coc_global_extensions = ['coc-json', 'coc-eslint', 'coc-prettier', 'coc-css', 'coc-tsserver', 'coc-snippets']
 
 " Give more space for displaying messages.
 set cmdheight=2
