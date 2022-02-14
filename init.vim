@@ -17,7 +17,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 "style
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
-Plug 'sainnhe/gruvbox-material'
 Plug 'morhetz/gruvbox'
 
 "Python
