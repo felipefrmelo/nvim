@@ -1,12 +1,16 @@
 {
-  "coc.preferences.formatOnType": true,
-  "coc.preferences.formatOnSaveFiletypes": ["python", "html"],
+  "coc.preferences.formatOnType": false,
   "python.linting.pylintEnabled": true,
   "python.linting.pylintArgs": ["--disable=C0114,C0115,C0116"],
+  "python.linting.lintOnSave": false,
   "workspace.workspaceFolderCheckCwd": false,
-  "tsserver.formatOnType": false,
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+  "prettier.bracketSpacing": true,
+  "prettier.singleQuote": true,
   "eslint.format.enable": true,
-  "prettier.eslintIntegration": true
+  "prettier.printWidth": 100,
+  "snippets.ultisnips.pythonPrompt": false,
+  "java.jdt.ls.lombokSupport.enabled": false,
+  "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -Xlog:disable -javaagent:/usr/local/share/lombok/lombok.jar -Xbootclasspath/a:/usr/local/share/lombok/lombok.jar"
 }

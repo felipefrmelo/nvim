@@ -7,12 +7,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jiangmiao/auto-pairs'
 Plug 'vim-test/vim-test'
-Plug 'github/copilot.vim'
 Plug 'honza/vim-snippets'
 
-"Tree
-Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'github/copilot.vim'
 
 "style
 Plug 'vim-airline/vim-airline-themes'
@@ -27,10 +24,16 @@ Plug 'pangloss/vim-javascript'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 
+" Clojure
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+
 "Git
 Plug 'tpope/vim-fugitive'
 
+Plug 'norcalli/nvim-colorizer.lua'
+
 call plug#end()
+
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -50,8 +53,21 @@ set inccommand=split
 set autoindent
 set updatetime=300
 set nohlsearch
+set history=500
+set clipboard+=unnamedplus
+map <F3> <ESC>:exec &mouse!=""? "set mouse=" : "set mouse=nv"<CR>
 
 let mapleader="\<space>"
+
+
+" ===========  shortcuts for opening new files =================
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+map <leader>ew :e %%
+map <leader>es :sp %%
+map <leader>ev :vsp %%
+map <leader>et :tabe %%
+" ==============================================================
+
 
 nnoremap <c-s> :write<cr>
 
@@ -59,11 +75,25 @@ nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
 nnoremap <c-p> :Files<cr>
 nnoremap <c-f> :Ag<space>
+nnoremap <C-b> :ls<CR>:b<Space>
+nnoremap <Leader>h :bprevious<CR>
+nnoremap <Leader>l :bnext<CR>
+nnoremap <Leader>k :bfirst<CR>
+nnoremap <Leader>j :blast<CR>
+nnoremap <leader>cb :w <bar> %bd <bar> e# <bar> bd# <CR>
 
 filetype plugin indent on
 set tabstop=4
 set shiftwidth=4
 set expandtab
+
+" =========== Folding =================
+set foldmethod=syntax
+set foldlevel=99
+
+
+"select visual mode
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 " ================ Scrolling ========================
 
@@ -73,10 +103,14 @@ set sidescroll=1
 
 " ================ Git ===========================
 nmap <leader>gs :G<CR>
+nmap <leader>gb :G blame<CR>
 
+"Copilot
+let g:copilot_filetypes = {'yaml': v:true, 'markdown': v:true}
+" enable e disable copilot
+nmap <leader>cp :Copilot enable<CR>
+nmap <leader>cd :Copilot disable<CR>
 
-"NerdTree
-nnoremap <C-n> :NERDTreeToggle<CR>
 
 "test
 nmap <silent> t<C-n> :TestNearest<CR>
@@ -87,6 +121,7 @@ nmap <silent> t<C-g> :TestVisit<CR>
 let test#strategy = "neovim"
 let g:test#preserve_screen = 1
 let g:test#neovim#start_normal = 1 
+let test#neovim#term_position = "vert botright"
 
 "Python -----------------------------------"
 let g:python_highlight_all = 1
@@ -94,17 +129,59 @@ let g:python_highlight_space_errors=0
 
 "Javascript -----------------------------------"
 let g:javascript_plugin_jsdoc = 1
+let test#javascript#ngtest#options = '--watch false --browsers ChromeHeadless'
+let test#javascript#reactscripts#options = '--watchAll=false'
+
+" Clojure -----------------------------------
+autocmd FileType clojure nmap <leader>ee :Eval<CR>
+
+
+
+"java -----------------------------------
+
+"Go -----------------------------------
+autocmd FileType go nmap gtf :CocCommand go.test.generate.function<cr>
+autocmd FileType go nmap gtt :CocCommand go.test.toggle<cr>
+
+" Map <leader>af to convert the current function to an arrow function
+nnoremap <leader>af :call ConvertFunctionToArrow()<CR>
+
+" Define the function to perform the conversion
+function! ConvertFunctionToArrow()
+    " Save the current cursor position
+    let save_cursor = getpos(".")
+    
+    " Get the current line
+    let line = getline(".")
+    
+    " Get the current indentation
+    let indent = matchstr(line, '^\s*')
+    
+    " Get the current function name
+    let function_name = matchstr(line, 'function\s\+\zs\w\+\ze\s*(.*)')
+    
+    " Get the current function arguments
+    let function_arguments = matchstr(line, 'function\s\+\w\+\s*(\zs.*\ze)')
+    
+    " Get the current function body
+    let function_body = matchstr(line, 'function\s\+\w\+\s*(.*)\zs.*\ze')
+    
+    " Build the arrow function
+    let arrow_function = indent . 'const ' . function_name . ' = (' . function_arguments . ') => ' . function_body
+    
+    " Replace the current line with the arrow function
+    execute 's/' . line . '/' . arrow_function . '/'
+    
+    " Restore the cursor position
+    call setpos('.', save_cursor)
+endfunction
 
 "Coc.vim ---------------------------------"
 "extensions
-let g:coc_global_extensions = ['coc-json', 'coc-eslint', 'coc-prettier', 'coc-css', 'coc-tsserver', 'coc-snippets']
+let g:coc_global_extensions = ['coc-json', 'coc-eslint', 'coc-prettier', 'coc-css', 'coc-tsserver', 'coc-snippets', 'coc-pyright', 'coc-java', 'coc-go', 'coc-rls', 'coc-jsref', 'coc-react-refactor', 'coc-clojure', 'coc-xml']
 
 " Give more space for displaying messages.
 set cmdheight=2
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
@@ -113,16 +190,20 @@ set shortmess+=c
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" Insert <tab> when previous text is space, refresh completion if not.
+inoremap <silent><expr> <TAB>
+    \ coc#pum#visible() ? coc#pum#next(1):
+    \ <SID>check_back_space() ? "\<Tab>" :
+    \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+
 
 " Use <c-space> to trigger completion.
 if has('nvim')
@@ -133,9 +214,8 @@ endif
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -179,9 +259,20 @@ augroup end
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
+nmap ga <Plug>(coc-codeaction-cursor)
+xmap ga <Plug>(coc-codeaction-selected)
+
 " Remap keys for applying codeAction to the current buffer.
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 
+
+" ================ Color ========================="
+set termguicolors
+lua <<EOF
+require'colorizer'.setup({
+    "*";
+    },{ names = false })
+EOF
