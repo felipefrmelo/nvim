@@ -49,14 +49,14 @@ return {
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
           },
-          ['<Tab>'] = cmp.mapping(function(fallback)
+          ['<S-Tab>'] = cmp.mapping(function(fallback)
             if luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
             else
               fallback()
             end
           end, { 'i', 's' }),
-          ['<S-Tab>'] = cmp.mapping(function(fallback)
+          ['<S-C>'] = cmp.mapping(function(fallback)
             if luasnip.jumpable(-1) then
               luasnip.jump(-1)
             else
@@ -74,9 +74,8 @@ return {
       vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
       vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
       vim.keymap.set("n", "<leader>gi", vim.lsp.buf.implementation, {})
-      vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, {})
+      vim.keymap.set({"x", "n"}, "<leader>a", vim.lsp.buf.code_action, {})
       vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
-      vim.keymap.set("x", "<leader>a", vim.lsp.buf.code_action, {})
       vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, {})
       vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, {})
     end,
