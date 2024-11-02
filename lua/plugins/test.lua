@@ -8,6 +8,7 @@ return {
       "nvim-neotest/neotest-plenary",
       "marilari88/neotest-vitest",
       "nvim-neotest/neotest-jest",
+      "rcasia/neotest-java",
     },
     lazy = false,
     config = function()
@@ -21,6 +22,7 @@ return {
             env = { CI = true },
           }),
           require('rustaceanvim.neotest'),
+          require("neotest-java")
         },
         summary = {
           animated = false,

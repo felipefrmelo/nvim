@@ -28,3 +28,5 @@ vim.cmd([[ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>]])
 vim.opt.scrolloff = 8 -- Start scrolling when we're 8 lines away from margins
 vim.opt.sidescrolloff = 15
 vim.opt.sidescroll = 1
+
+vim.o.exrc = true

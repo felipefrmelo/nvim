@@ -6,6 +6,7 @@ return {
       "williamboman/mason-lspconfig.nvim",
       "hrsh7th/nvim-cmp",         -- Autocompletion plugin
       "hrsh7th/cmp-nvim-lsp",     -- LSP source for nvim-cmp
+      "hrsh7th/cmp-buffer",       -- LSP source for nvim-cmp
       "saadparwaiz1/cmp_luasnip", -- Snippets source for nvim-cmp
       "L3MON4D3/LuaSnip",         -- Snippets plugin
       "rafamadriz/friendly-snippets"
@@ -14,7 +15,7 @@ return {
     config = function()
       require("neodev").setup({})
       require("luasnip.loaders.from_vscode").lazy_load()
-      local servers = { 'lua_ls', 'tsserver', 'jdtls', 'eslint', "pyright" }
+      local servers = { 'lua_ls', 'ts_ls', 'jdtls', 'eslint', "pyright", "golangci_lint_ls", "gopls" }
       require("mason").setup()
       require("mason-lspconfig").setup({
         ensure_installed = servers,
@@ -67,6 +68,14 @@ return {
         sources = {
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
+          { name = 'buffer',
+            option = {
+              get_bufnrs = function()
+                return vim.api.nvim_list_bufs()
+              end
+            }
+
+          },
         },
       }
 
@@ -74,7 +83,7 @@ return {
       vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
       vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
       vim.keymap.set("n", "<leader>gi", vim.lsp.buf.implementation, {})
-      vim.keymap.set({"x", "n"}, "<leader>a", vim.lsp.buf.code_action, {})
+      vim.keymap.set({ "x", "n" }, "<leader>a", vim.lsp.buf.code_action, {})
       vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
       vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, {})
       vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, {})

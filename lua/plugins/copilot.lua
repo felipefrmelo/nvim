@@ -8,7 +8,7 @@ return {
             require("copilot").setup({
               suggestion = {
                 enabled = true,
-                auto_trigger = false,
+                auto_trigger = true,
                 debounce = 75,
                 keymap = {
                   accept = false,
@@ -22,7 +22,6 @@ return {
             })
 
           local suggestion = require("copilot.suggestion")
-          vim.keymap.set('n', '<leader>ce', suggestion.toggle_auto_trigger, {})
           vim.keymap.set('n', '<leader>ce', suggestion.toggle_auto_trigger, {})
           vim.keymap.set("i", '<Tab>', function()
             if require("copilot.suggestion").is_visible() then
