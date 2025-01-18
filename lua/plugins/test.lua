@@ -9,6 +9,7 @@ return {
       "marilari88/neotest-vitest",
       "nvim-neotest/neotest-jest",
       "rcasia/neotest-java",
+      { "fredrikaverpil/neotest-golang", version = "*" },
     },
     lazy = false,
     config = function()
@@ -22,7 +23,8 @@ return {
             env = { CI = true },
           }),
           require('rustaceanvim.neotest'),
-          require("neotest-java")
+          require("neotest-java"),
+          require("neotest-golang"),
         },
         summary = {
           animated = false,
