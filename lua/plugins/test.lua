@@ -12,8 +12,9 @@ return {
     config = function()
       vim.g["test#strategy"] = "neovim"
       vim.g["test#neovim#start_normal"] = 0
-      vim.g["test#neovim#term_position"] = "vert botright"
+      vim.g["test#neovim#term_position"] = "vert topleft"
       vim.g["test#preserve_screen"] = 0
+      vim.g["test#neovim_sticky#kill_previous"] = 1
     end,
   }
 }

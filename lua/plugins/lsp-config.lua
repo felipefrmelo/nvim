@@ -15,7 +15,7 @@ return {
     config = function()
       require("neodev").setup({})
       require("luasnip.loaders.from_vscode").lazy_load()
-      local servers = { 'lua_ls', 'ts_ls', 'jdtls', 'eslint', "pyright", "golangci_lint_ls", "gopls", "clangd" }
+      local servers = { 'lua_ls', 'ts_ls', 'jdtls', 'eslint', "pyright", "golangci_lint_ls", "gopls", "clangd", "csharp_ls" }
       require("mason").setup()
       require("mason-lspconfig").setup({
         ensure_installed = servers,

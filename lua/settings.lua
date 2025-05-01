@@ -14,7 +14,7 @@ vim.g.netrw_browse_split = 3
 vim.g.netrw_altv = 1
 vim.g.netrw_liststyle = 3
 vim.g.cursorhold_updatetime = 200
-
+vim.opt.laststatus = 3
 vim.cmd('filetype plugin indent on')
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
@@ -30,3 +30,6 @@ vim.opt.sidescrolloff = 15
 vim.opt.sidescroll = 1
 
 vim.o.exrc = true
+
+vim.o.completeopt = "menu,menuone,noinsert,noselect,popup"
+

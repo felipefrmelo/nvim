@@ -19,3 +19,8 @@ vim.api.nvim_set_keymap('n', '<Leader>k', ':bfirst<cr>', {})
 vim.api.nvim_set_keymap('n', '<Leader>j', ':blast<cr>', {})
 vim.api.nvim_set_keymap('n', '<leader>cb', ':w <bar> %bd <bar> e# <bar> bd# <CR>', { silent = true })
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { noremap = true })
+
+
+-- Quick access to edit vim settings
+vim.keymap.set('n', '<leader>sv', ':e $MYVIMRC | :cd %:p:h | Explore<CR>', { noremap = true, silent = true, desc = "Edit Vim settings" })
+
