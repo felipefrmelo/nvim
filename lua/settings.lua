@@ -4,7 +4,7 @@ vim.opt.relativenumber = true
 vim.opt.mouse = ""
 vim.opt.inccommand = "split"
 vim.opt.smartindent = true
-vim.opt.updatetime = 4000
+vim.opt.updatetime = 250
 vim.opt.hlsearch = false
 vim.opt.history = 500
 vim.opt.clipboard:append("unnamedplus")
