@@ -22,8 +22,8 @@ return {
       vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, { desc = "LSP: Show signature help" })
 
       -- Diagnostic navigation
-      vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, { desc = "Diagnostic: Next" })
-      vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { desc = "Diagnostic: Previous" })
+      vim.keymap.set("n", "<leader>dn", function() vim.diagnostic.jump({count=1, float=true}) end , { desc = "Diagnostic: Next" })
+      vim.keymap.set("n", "<leader>dp", function() vim.diagnostic.jump({count=-1, float=true}) end, { desc = "Diagnostic: Previous" })
       vim.keymap.set("n", "<leader>dl", vim.diagnostic.open_float, { desc = "Diagnostic: Show line diagnostics" })
       vim.keymap.set("n", "<leader>dq", vim.diagnostic.setloclist, { desc = "Diagnostic: Set location list" })
 
