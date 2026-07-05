@@ -1,7 +1,7 @@
 return {
   {
     'mrcjkb/rustaceanvim',
-    version = '^4', -- Recommended
+    version = '^9',
     lazy = false, -- This plugin is already lazy
   }
 }
